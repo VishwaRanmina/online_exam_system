@@ -1,4 +1,7 @@
 package com.examteam.exam_system.user.model;
 
-public class Role {
+public enum Role {
+    ADMIN,
+    LECTURER,
+    STUDENT
 }

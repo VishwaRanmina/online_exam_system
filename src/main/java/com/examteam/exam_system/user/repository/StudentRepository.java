@@ -23,4 +23,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     Optional<Student> findByIdAndActiveTrue(Long id);
 
+    long countByActiveTrue();
+
 }
