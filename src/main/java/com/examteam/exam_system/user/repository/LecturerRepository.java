@@ -23,4 +23,6 @@ public interface LecturerRepository
     Optional<Lecturer> findByIdAndActiveTrue(Long id);
 
     long countByActiveTrue();
+
+    boolean existsByEmailAndActiveTrue(String email);
 }
