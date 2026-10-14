@@ -1,5 +1,7 @@
 package com.examteam.exam_system.user.repository;
 
+import com.examteam.exam_system.user.model.Role;
+
 import com.examteam.exam_system.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,5 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByActiveTrue();
 
     long countByActiveTrue();
+
+    boolean existsByRole(Role role);
 
 }
