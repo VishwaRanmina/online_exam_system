@@ -1,4 +1,3 @@
-
 package com.examteam.exam_system.ranking.service;
 
 import com.examteam.exam_system.exam.model.Exam;
@@ -55,7 +54,6 @@ public class RankingService {
         for (int i = 0; i < n; i++) {
 
             Result result = results.get(i);
-            Student student = result.getAttempt().getStudent();
 
             studentIds[i] = student.getId();
             studentNumbers[i] = student.getStudentNumber();
@@ -74,27 +72,14 @@ public class RankingService {
 
             Long studentId = studentIds[i];
 
-            Result result = results.stream()
-                    .filter(r ->
-                            r.getAttempt().getStudent()
-                                    .getId().equals(studentId))
-                    .findFirst()
-                    .orElseThrow();
 
-            Student student = result.getAttempt().getStudent();
 
-            double percentage = result.getMaximumScore() == 0
                     ? 0
-                    : (result.getTotalScore() * 100.0)
-                    / result.getMaximumScore();
 
             rankings.add(new RankingResponse(
                     i + 1,
-                    studentId,
                     student.getStudentNumber(),
                     student.getName(),
-                    result.getTotalScore(),
-                    result.getMaximumScore(),
                     percentage
             ));
         }
@@ -146,9 +131,7 @@ public class RankingService {
                 lowestScore = score;
             }
 
-            double percentage = result.getMaximumScore() == 0
                     ? 0
-                    : (score * 100.0) / result.getMaximumScore();
 
             if (percentage >= 50.0) {
                 passedStudents++;
